@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+
+    <title>Filter</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="center-align">Contact List</h1>
+      <input type="text" id="filterInput" placeholder="Search Name.." />
+      <ul class="collection with-header" id="names">
+        <li class="collection-header">
+          <h5>M</h5>
+        </li>
+        <li class="collection-item">
+          <a href="#">Michael</a>
+        </li>
+        <li class="collection-item">
+          <a href="#">Mathew</a>
+        </li>
+        <li class="collection-item">
+          <a href="#">Mark</a>
+        </li>
+        <li class="collection-item">
+          <a href="#">Mahesh</a>
+        </li>
+        <li class="collection-header">
+          <h5>G</h5>
+        </li>
+        <li class="collection-item">
+          <a href="#">Gaurav</a>
+        </li>
+        <li class="collection-item">
+          <a href="#">Ganesh</a>
+        </li>
+        <li class="collection-item">
+          <a href="#">Grigor</a>
+        </li>
+        <li class="collection-item">
+          <a href="#">Gaoutham</a>
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      let filterInput = document.getElementById("filterInput");
+      filterInput.addEventListener("keyup", filterNames);
+
+      //function declaration
+      function filterNames() {
+        let filterValue = filterInput.value.toUpperCase();
+
+        //get names ul
+        let ul = document.getElementById("names");
+
+        //getting all the list items
+        let li = ul.querySelectorAll("li.collection-item"); //li will be an array
+
+        //loop through the array i.e,.collection-items
+        for (let i = 0; i < li.length; i++) {
+          let a = li[i].getElementsByTagName("a")[0];
+          console.log(a);
+          // if matched
+          if (a.innerHTML.toUpperCase().indexOf(filterValue) > -1) {
+            //-1 is returned because it din't  matched
+            li[i].style.display = "";
+          } else {
+            li[i].style.display = "none";
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
